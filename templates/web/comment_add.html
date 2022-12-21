@@ -1,0 +1,14 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+<section id="create-page" class="auth">
+        <form id="create" method="post">
+            <div class="container">
+
+                <h1>Comment</h1>
+                    {{ form }}
+                    {% csrf_token %}
+                <input class="btn submit" type="submit" value="Comment">
+            </div>
+        </form>
+    </section>
+{% endblock %}

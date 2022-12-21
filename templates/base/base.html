@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Handmade With Love</title>
+</head>
+
+<body>
+<div id="box">
+    <header>
+        {% if request.user.is_authenticated %}
+        <h1><a class="home" href="{% url 'projects' %}">Handmade With Love</a></h1>
+            {% else %}
+            <h1><a class="home" href="{% url 'index' %}">Handmade With Love</a></h1>
+        {% endif %}
+
+        <nav>
+                <a href="{% url 'news' %}">News</a>
+            {% if request.user.is_staff %}
+                <a href="{% url 'news add' %}">Add news</a>
+            {% endif %}
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'project add' %}">Add project</a>
+                <a href="{% url 'favourites' %}">Favourites</a>
+                <a href="{% url 'profile details' request.user.id%}">Profile</a>
+            {% else %}
+                <a href="{% url 'profile create' %}">Register</a>
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    {% block page_content %}
+    {% endblock %}
+    <footer>
+        &copy;Rositsa Barutchieva. SoftUni Python web - project. All rights reserved.
+    </footer>
+
+</div>
+</body>
+</html>

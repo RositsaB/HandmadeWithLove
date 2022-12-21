@@ -1,0 +1,52 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+
+   <section id="project-details">
+        <h1>Profile Details</h1>
+        <div class="info-section">
+            <div class="project-header">
+                <img class="project-img" src="{{ profile.picture }}" alt='{% static 'images/default-user.jpg' %}'/>
+                <h1>{{ profile.first_name }} {{ profile.last_name }}</h1>
+                <p class="text">Email: {{ request.user.email}}</p>
+                {% if profile.date_of_birth %}
+                <p class="text">Birthdate: {{ profile.date_of_birth }}</p>
+                {% endif %}
+                {% if profile.gender %}
+                <p class="text">Gender: {{ profile.gender }}</p>
+                {% endif %}
+
+                <div class="buttons">
+                    <a href="{% url 'logaut' request.user.id %}" class="button">Logout</a>
+                    <a href="{% url 'profile edit' request.user.id %}" class="button">Edit</a>
+                    <a href="{% url 'profile delete' request.user.id  %}" class="button">Delete</a>
+                </div>
+
+            </div>
+
+
+
+            </div>
+        </div>
+    </section>
+    <section id="project-details">
+        <h1>My Projects</h1>
+        <div class="project-header">
+
+                    {% for project in projects %}
+                        <div class="project">
+                            <div class="image-wrap">
+                            <img src="{{ project.photo.url }}"
+                                    alt="photo">
+                            </div>
+                            <h3>{{ project.name }}</h3>
+                        <div/>
+                        <div class="data-buttons">
+                            <a href="{% url 'project details' project.pk %}" class="btn details-btn">Details</a>
+                        <div/>
+                    {% endfor %}
+
+            <div/>
+    </section>
+
+{% endblock %}

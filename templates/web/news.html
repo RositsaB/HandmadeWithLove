@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+<section id="project-details">
+        <h1>News</h1>
+        {% for n in news %}
+        <div class="info-section">
+            <div class="project-header">
+                <img class="project-img" src="{{ n.picture }}" alt='picture'/>
+                <h1>{{ n.title }}</h1>
+                <p class="text">{{ n.content }}</p>
+
+            </div>
+        {% endfor %}
+        </div>
+    </section>
+{% endblock %}

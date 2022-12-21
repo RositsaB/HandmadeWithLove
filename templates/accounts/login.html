@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+ <section id="login-page" class="content auth">
+        <form id="login" method="POST">
+            <div class="container">
+                <div class="brand-logo"></div>
+                <h1>Login</h1>
+
+                {{ form }}
+                {% csrf_token %}
+
+                <input class="btn submit" type="submit" value="Login">
+            </div>
+        </form>
+    </section>
+
+{% endblock %}

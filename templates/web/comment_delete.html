@@ -1,0 +1,15 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+    <section id="create-page" class="auth">
+    <div class="container">
+        <h1>Do you want to delete your comment?</h1>
+
+        <form id='delete' method="post" >
+            {{ form }}
+            {% csrf_token %}
+            <input class="btn submit" type="submit" value="Delete">
+        </form>
+
+    </div>
+</section>
+{% endblock %}

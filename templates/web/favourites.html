@@ -1,0 +1,18 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+    <section id="welcome-world">
+
+    {% for project in favourites_list %}
+        <div class="project">
+            <div class="image-wrap">
+                <img src="{{ project.project.photo.url }}"
+                     alt="photo">
+            </div>
+            <h3>{{ project.project.name }}</h3>
+            <div class="data-buttons">
+                <a href="{% url 'project details' project.project.pk %}" class="btn details-btn">Details</a>
+            </div>
+        </div>
+    {% endfor %}
+    </section>
+{% endblock %}

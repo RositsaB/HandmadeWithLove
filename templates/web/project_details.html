@@ -1,0 +1,46 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+
+    <section id="project-details">
+        <h1>Project Details</h1>
+        <div class="info-section">
+            <div class="project-header">
+                <img class="project-img"
+                     src="{{project.photo.url}}" alt='image'/>
+                <h1>{{ project.name }}</h1>
+                <p><span class="type">Creator: {{ full_name }}</span></p>
+            {% if project in favourites_list %}
+                <a href="{% url 'favourites remove' project.pk %}"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+            {% else %}
+                <a href="{% url 'favourites add' project.pk %}"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+            {% endif %}
+
+            </div>
+            <p class="text">{{ project.description }}</p>
+
+            <div class="buttons">
+                <a href="{% url 'comment' project.pk %}" class="button">Comment</a>
+                {% if is_owner %}
+                <a href="{% url 'project edit' project.pk %}" class="button">Edit</a>
+                <a href="{% url 'project delete' project.pk %}" class="button">Delete</a>
+                {% endif %}
+            </div>
+            <div>
+                <h2>Comments:</h2>
+
+                {% for comment in comments %}
+                    <div class="project-header">
+                         <p><span class="type">{{ comment.author_name }}</span></p>
+                    </div>
+                    <p class="text">{{ comment.content }}</p>
+                    {% if comment.user_id == request.user.id %}
+                        <a href="{% url 'comment edit' comment.pk %}" class="button">Edit</a>
+                        <a href="{% url 'comment delete' comment.pk %}" class="button">Delete</a>
+                    {% endif %}
+
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
